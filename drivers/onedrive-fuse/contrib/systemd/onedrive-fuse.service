@@ -1,0 +1,15 @@
+[Unit]
+Description=OneDrive FUSE mount
+Documentation=https://github.com/shadow1o4/TBearOS-Alpha/tree/main/drivers/onedrive-fuse
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/onedrive-fuse mount
+ExecStop=/bin/fusermount3 -u /OneDrive
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target
